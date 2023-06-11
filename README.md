@@ -13,13 +13,13 @@
 ### 1. 로그인 / 회원가입
 - [ ] /signup 경로에 회원가입 기능 개발
 - [ ] /signin 경로에 로그인 기능 개발
-- [ ] 페이지 안에 이메일 input, 비밀번호 input, 제출 button이 포함된 형태로 구성해주세요
-    - [ ] 이메일 input에 data-testid="email-input" 속성을 부여해주세요
-    - [ ] 패스워드 input에 data-testid="password-input" 속성을 부여해주세요
-    - [ ] 회원가입 페이지에는 회원가입 button에 data-testid="signup-button" 속성을 부여해주세요
-    - [ ] 로그인 페이지에는 로그인 button에 data-testid="signin-button" 속성을 부여해주세요
+- [x] 페이지 안에 이메일 input, 비밀번호 input, 제출 button이 포함된 형태로 구성해주세요
+    - [x] 이메일 input에 data-testid="email-input" 속성을 부여해주세요
+    - [x] 패스워드 input에 data-testid="password-input" 속성을 부여해주세요
+    - [x] 회원가입 페이지에는 회원가입 button에 data-testid="signup-button" 속성을 부여해주세요
+    - [x] 로그인 페이지에는 로그인 button에 data-testid="signin-button" 속성을 부여해주세요
 - [ ] 두 페이지의 UI는 동일해도 무방합니다
-- [ ] 회원가입과 로그인 페이지의 버튼에 부여되는 test-id가 다른 것에 유의해주세요
+- [x] 회원가입과 로그인 페이지의 버튼에 부여되는 test-id가 다른 것에 유의해주세요
 
 Assignment 1
 - [ ] 회원가입과 로그인 페이지에 이메일과 비밀번호의 유효성 검사기능 구현
