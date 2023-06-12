@@ -2,7 +2,12 @@ import { useState } from "react";
 import { updateTodo } from "../apis";
 import { TodoListData } from "../pages/todoPage";
 
-export default function ToDo({ props }: { props: TodoListData }) {
+interface Props {
+    props: TodoListData;
+    deleteHandler: (id: number) => () => void;
+}
+
+export default function ToDo({ props, deleteHandler }: Props) {
     const { id, todo, isCompleted, userId } = props
     const [isChcecked, setIsChecked] = useState(isCompleted)
 
@@ -18,7 +23,7 @@ export default function ToDo({ props }: { props: TodoListData }) {
                 <span>{todo}</span>
             </label>
             <button data-testid="modify-button">수정</button>
-            <button data-testid="delete-button">삭제</button>
+            <button data-testid="delete-button" onClick={deleteHandler(id)}>삭제</button>
         </li>
     )
 }

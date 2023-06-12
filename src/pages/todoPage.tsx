@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createTodo, getTodos } from "../apis";
+import { createTodo, deleteTodo, getTodos, updateTodo } from "../apis";
 import ToDo from "../Components/todo";
 
 export default function TodoPage() {
@@ -14,26 +14,34 @@ export default function TodoPage() {
         setTodoList(list)
     }
 
+    const createHandler = async () => {
+        const newToDo = await createTodo(newTodo)
+        setTodoList((old) => [...old, newToDo])
+    }
+
+    const deleteHandler = (id: number) => {
+        return async () => {
+            await deleteTodo(id)
+            const remainList = todoList.filter(todo => todo.id !== id)
+            setTodoList(remainList)}
+    }
+
     // 페이지 시작시
     useEffect(() => {
         // Todo 리스트 받아오기
         token ? updateList() : navigate("/signin")
     }, [])
 
-
     return (
         <>
             <button onClick={() => navigate("/")}>메인 이동</button>
             <div>To Do를 입력하세요
                 <input data-testid="new-todo-input" onChange={(e) => setNewTodo(e.target.value)} />
-                <button data-testid="new-todo-add-button" onClick={() => {
-                    createTodo(newTodo)
-                    updateList()
-                }}>추가</button>
+                <button data-testid="new-todo-add-button" onClick={createHandler}>추가</button>
             </div>
             <div>To Do List</div>
             {todoList.map(el => {
-                return <ToDo key={el.id} props={el} />
+                return <ToDo key={el.id} props={el} deleteHandler={deleteHandler} />
             })}
         </>
     )

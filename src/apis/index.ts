@@ -91,3 +91,10 @@ export const updateTodo = async (id: number, todo: string, isCompleted: boolean)
 }
 
 // 2-4. deleteTodo - Todo 삭제
+export const deleteTodo = async (id: number) => {
+    const token = localStorage.getItem("access_token")
+    const confirm = window.confirm(`정말 삭제하시겠습니까? 복원은 안돼요 !`)
+    if(confirm){
+        await axios.delete(`/todos/${id}`, {headers: {Authorization: `Bearer ${token}`}})
+    }
+}
