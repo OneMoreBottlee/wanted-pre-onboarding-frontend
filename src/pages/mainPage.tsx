@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const Main = () => {
+export default function MainPage () {
     const navigate = useNavigate()
     const token = localStorage.getItem("access_token")
 
@@ -23,5 +23,3 @@ const Main = () => {
         </div>
     )
 }
-
-export default Main;

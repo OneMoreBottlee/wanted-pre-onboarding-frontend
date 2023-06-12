@@ -2,17 +2,21 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../apis";
 
-const SignUp = () => {
+export default function SignUpPage () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [validate, setValidate] = useState(false);
     const navigate = useNavigate();
 
     // 회원가입
-    const signupHandler = (event: any) => {
+    const signupHandler = async (event: any) => {
         event.preventDefault()
-        signup(email, password)
-        navigate('/signin')
+        const response = await signup(email, password)
+        
+        // 회원가입 성공한 경우, 로그인 페이지로 이동
+        if(response?.status === 201){
+            navigate('/signin')
+        }
     }
 
     // validate
@@ -37,5 +41,3 @@ const SignUp = () => {
         </form>
     )
 }
-
-export default SignUp;

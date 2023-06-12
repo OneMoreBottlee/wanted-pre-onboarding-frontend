@@ -1,10 +1,10 @@
 import { Route, Routes as ReactRoutes } from "react-router-dom"
-import Main from "../pages/main"
-import SignIn from "../pages/signin"
-import SignUp from "../pages/singup"
-import Todo from "../pages/todo"
+import Main from "../pages/mainPage"
+import SignIn from "../pages/signinPage"
+import SignUp from "../pages/singupPage"
+import Todo from "../pages/todoPage"
 
-const Routes = () => {
+export default function Routes () {
     return (
         <ReactRoutes>
             <Route path="/" element={<Main />} />
@@ -14,5 +14,3 @@ const Routes = () => {
         </ReactRoutes>
     )
 }
-
-export default Routes;
