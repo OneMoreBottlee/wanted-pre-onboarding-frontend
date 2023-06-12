@@ -18,7 +18,7 @@ npm start
 ```
 
 ## 배포 링크
-- 배포 후 추가
+https://ombstodo.netlify.app/
 
 ## 과제
 ### 1. 로그인 / 회원가입
