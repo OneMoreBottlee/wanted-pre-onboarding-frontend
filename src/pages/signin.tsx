@@ -1,9 +1,34 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 const SignIn = () => {
-    return <div>signin
-        <input data-testid="email-input" />
-        <input data-testid="password-input" />
-        <button data-testid="signin-button" />
-    </div>
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [validate, setValidate] = useState(false);
+    const navigate = useNavigate();
+
+    // 회원가입
+    const signupHandler = (event: any) => {
+        event.preventDefault()
+        // signup(email, password)
+        // navigate('/signin')
+    }
+
+    // validate
+    // ID @ 포함 & PW 8자 이상
+    useEffect(() => {
+        (email.includes("@") && password.length >= 8) ? setValidate(true) : setValidate(false)
+    }, [email, password])
+
+    return (
+        <form onSubmit={signupHandler}>signin
+            <input data-testid="email-input" onChange={(e) => setEmail(e.target.value)} />
+            <input data-testid="password-input" onChange={(e) => setPassword(e.target.value)} />
+            {validate
+                ? <button style={{ height: "20px" }} data-testid="signup-button">Sign</button>
+                : <button disabled style={{ height: "20px" }} data-testid="signup-button">Sign</button>}
+        </form>
+    )
 }
 
 export default SignIn;
