@@ -1,13 +1,24 @@
 # wanted-pre-onboarding-frontend
 
-## 자기소개
-안녕하세요 한병주 입니다.
+## 지원자
+- 한병주
 
-## 프로젝트 실행 방법
--- 프로젝트 제작 후 추가
+## 프로젝트 실행 방법 (Local)
+1. git clone 으로 프로젝트 복사
+```
+git clone git@github.com:OneMoreBottlee/wanted-pre-onboarding-frontend.git
+```
+2. 클론한 디렉토리에서 npm 설치
+```
+npm install
+```
+3. npm 시작
+```
+npm start
+```
 
 ## 배포 링크
--- 프로젝트 제작 후 추가
+- 배포 후 추가
 
 ## 과제
 ### 1. 로그인 / 회원가입
@@ -18,7 +29,7 @@
     - [x] 패스워드 input에 data-testid="password-input" 속성을 부여해주세요
     - [x] 회원가입 페이지에는 회원가입 button에 data-testid="signup-button" 속성을 부여해주세요
     - [x] 로그인 페이지에는 로그인 button에 data-testid="signin-button" 속성을 부여해주세요
-- [ ] 두 페이지의 UI는 동일해도 무방합니다
+- [x] 두 페이지의 UI는 동일해도 무방합니다
 - [x] 회원가입과 로그인 페이지의 버튼에 부여되는 test-id가 다른 것에 유의해주세요
 
 Assignment 1
@@ -99,16 +110,16 @@ Assignment 9
 - [x] 투두 리스트의 TODO 우측의 삭제버튼을 누르면 해당 아이템이 삭제되도록 해주세요
 
 Assignment 10
-- [ ] 투두 리스트의 수정 기능을 구현해주세요
-    - [ ] TODO 우측의 수정 버튼을 누르면 수정모드가 활성화 되도록 해주세요
-    - [ ] 수정모드에서는 TODO의 내용을 변경할 수 있어야 합니다.
-    - [ ] 수정모드에서는 TODO의 내용이 input창 안에 입력된 형태로 변경해주세요
-        - [ ] 수정 input창에는 data-testid="modify-input" 속성을 부여해주세요
-    - [ ] 수정모드에서는 TODO의 우측에 제출버튼과 취소버튼이 표시되게 해주세요
-        - [ ] 제출버튼에는 data-testid="submit-button" 속성을 부여해주세요
-        - [ ] 취소버튼에는 data-testid="cancel-button" 속성을 부여해주세요
-    - [ ] 제출버튼을 누르면 수정한 내용을 제출해서 내용이 업데이트 될 수 있도록 해주세요
-    - [ ] 취소버튼을 누르면 수정한 내용을 초기화 하고, 수정모드를 비활성화 해주세요
+- [x] 투두 리스트의 수정 기능을 구현해주세요
+    - [x] TODO 우측의 수정 버튼을 누르면 수정모드가 활성화 되도록 해주세요
+    - [x] 수정모드에서는 TODO의 내용을 변경할 수 있어야 합니다.
+    - [x] 수정모드에서는 TODO의 내용이 input창 안에 입력된 형태로 변경해주세요
+        - [x] 수정 input창에는 data-testid="modify-input" 속성을 부여해주세요
+    - [x] 수정모드에서는 TODO의 우측에 제출버튼과 취소버튼이 표시되게 해주세요
+        - [x] 제출버튼에는 data-testid="submit-button" 속성을 부여해주세요
+        - [x] 취소버튼에는 data-testid="cancel-button" 속성을 부여해주세요
+    - [x] 제출버튼을 누르면 수정한 내용을 제출해서 내용이 업데이트 될 수 있도록 해주세요
+    - [x] 취소버튼을 누르면 수정한 내용을 초기화 하고, 수정모드를 비활성화 해주세요
 
 ```
 <input data-testid="modify-input" />

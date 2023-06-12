@@ -39,8 +39,7 @@ export const signin = async (email: string, password: string) => {
 
 // 2. ToDo 관련
 // 2-1. createTodo - Todo 생성
-export const createTodo = async (todo: string) => {
-  const token = localStorage.getItem("access_token");
+export const createTodo = async (token: string, todo: string) => {
   try {
     const response = await axios.post(
       "/todos",
@@ -60,8 +59,7 @@ export const createTodo = async (todo: string) => {
 };
 
 // 2-2. getTodo - Todo 리스트
-export const getTodos = async () => {
-  const token = localStorage.getItem("access_token");
+export const getTodos = async (token: string) => {
   try {
     const response = await axios.get("todos", {
       headers: { Authorization: `Bearer ${token}` },
@@ -74,8 +72,7 @@ export const getTodos = async () => {
 };
 
 // 2-3. updateTodo - Todo 수정
-export const updateTodo = async (id: number, todo: string, isCompleted: boolean) => {
-    const token = localStorage.getItem("access_token")
+export const updateTodo = async (token: string, id: number, todo: string, isCompleted: boolean) => {
     const data = {todo, isCompleted}
     try{
         const response = await axios.put(`/todos/${id}`, data, {
@@ -91,8 +88,7 @@ export const updateTodo = async (id: number, todo: string, isCompleted: boolean)
 }
 
 // 2-4. deleteTodo - Todo 삭제
-export const deleteTodo = async (id: number) => {
-    const token = localStorage.getItem("access_token")
+export const deleteTodo = async (token: string, id: number) => {
     const confirm = window.confirm(`정말 삭제하시겠습니까? 복원은 안돼요 !`)
     if(confirm){
         await axios.delete(`/todos/${id}`, {headers: {Authorization: `Bearer ${token}`}})

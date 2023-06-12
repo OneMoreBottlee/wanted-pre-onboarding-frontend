@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createTodo, deleteTodo, getTodos, updateTodo } from "../apis";
+import { createTodo, deleteTodo, getTodos } from "../apis";
 import ToDo from "../Components/todo";
+import { TodoListData } from "../types/todo";
 
 export default function TodoPage() {
     const [todoList, setTodoList] = useState<TodoListData[]>([])
@@ -9,28 +10,33 @@ export default function TodoPage() {
     const navigate = useNavigate()
     const token = localStorage.getItem("access_token")
 
+    // 페이지 시작시
+    useEffect(() => {
+        // 토큰이 있다면 Todo 리스트 받아오기
+        // 토큰이 없다면 로그인 페이지로 이동
+        token ? updateList() : navigate("/signin")
+    }, [])
+
+    // 리스트 업데이트
     const updateList = async () => {
-        const list = await getTodos()
+        const list = await getTodos(token!)
         setTodoList(list)
     }
 
+    // 투두 생성
     const createHandler = async () => {
-        const newToDo = await createTodo(newTodo)
+        const newToDo = await createTodo(token!, newTodo)
         setTodoList((old) => [...old, newToDo])
     }
 
+    // 투두 삭제
     const deleteHandler = (id: number) => {
         return async () => {
-            await deleteTodo(id)
+            await deleteTodo(token!, id)
             const remainList = todoList.filter(todo => todo.id !== id)
-            setTodoList(remainList)}
+            setTodoList(remainList)
+        }
     }
-
-    // 페이지 시작시
-    useEffect(() => {
-        // Todo 리스트 받아오기
-        token ? updateList() : navigate("/signin")
-    }, [])
 
     return (
         <>
@@ -47,9 +53,3 @@ export default function TodoPage() {
     )
 }
 
-export interface TodoListData {
-    id: number;
-    todo: string;
-    isCompleted: boolean;
-    userId: number;
-}
