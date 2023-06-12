@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../apis";
@@ -22,6 +21,12 @@ const SignUp = () => {
         (email.includes("@") && password.length >= 8) ? setValidate(true) : setValidate(false)
     }, [email, password])
 
+    // 로그인 여부에 따른 리다이렉트 - 토큰이 있으면 TODO 로 이동
+    useEffect(() => {
+        const token = localStorage.getItem("access_token")
+        if (token) navigate("/todo")
+    }, [])
+
     return (
         <form onSubmit={signupHandler}>signup
             <input data-testid="email-input" onChange={(e) => setEmail(e.target.value)} />
@@ -34,11 +39,3 @@ const SignUp = () => {
 }
 
 export default SignUp;
-
-// 1. 회원가입 유효성 검사
-// 1-1. 이메일 @ 포함
-// 1-2. 비밀번호 8자 이상
-// 1-3. 위 2개 통과 못할시 버튼 disabled
-// 2. 회원가입 버튼 클릭 후 정상 가입시 로그인 경로로 이동
-
-// 3. 로그인 상태시 todo로 리다이렉트 시키기

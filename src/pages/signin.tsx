@@ -8,12 +8,17 @@ const SignIn = () => {
     const [validate, setValidate] = useState(false);
     const navigate = useNavigate();
 
-    // 회원가입
-    const signupHandler = async (event: any) => {
+    // 로그인
+    const signinHandler = async (event: any) => {
         event.preventDefault()
         const token = await signin(email, password)
-        localStorage.setItem("access_token", token)
-        token === undefined ? console.log("계정 정보를 확인하세요") : navigate('/todo')
+
+        // 정상 로그인(토큰 값이 포함된 경우)인 경우
+        // 로컬 스토리지에 토큰을 저장하고, todo로 이동한다.
+        if(token !== undefined){
+            localStorage.setItem("access_token", token)
+            navigate('/todo')
+        }
     }
 
     // validate
@@ -22,26 +27,21 @@ const SignIn = () => {
         (email.includes("@") && password.length >= 8) ? setValidate(true) : setValidate(false)
     }, [email, password])
 
+    // 로그인 여부에 따른 리다이렉트 - 토큰이 있으면 TODO 로 이동
+    useEffect(() => {
+        const token = localStorage.getItem("access_token")
+        if (token) navigate("/todo")
+    }, [])
+
     return (
-        <form onSubmit={signupHandler}>signin
+        <form onSubmit={signinHandler}>signin
             <input data-testid="email-input" onChange={(e) => setEmail(e.target.value)} />
             <input data-testid="password-input" onChange={(e) => setPassword(e.target.value)} />
             {validate
                 ? <button style={{ height: "20px" }} data-testid="signup-button">Sign</button>
-                : <button disabled style={{ height: "20px" }} data-testid="signup-button">Sign</button>}
+                : <button disabled style={{ height: "20px" }} data-testid="signin-button">Sign</button>}
         </form>
     )
 }
 
 export default SignIn;
-
-// 1. 로그인 유효성 검사
-// 1-1. 이메일 @ 포함
-// 1-2. 비밀번호 8자 이상
-// 1-3. 위 2개 통과 못할시 버튼 disabled
-// 2. 로그인 버튼 클릭 후 정상 로그인시 todo 로 이동
-// 2-1. 로그인 성공시 JWT를 받아 로컬 스토리지에 저장하기
-
-// 3. 리다이렉트
-// 3-1. 토큰이 있으면 todo로
-// 3-2. 토큰이 없으면 회원가입으로
