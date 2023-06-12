@@ -15,6 +15,7 @@ export default function TodoPage() {
         // 토큰이 있다면 Todo 리스트 받아오기
         // 토큰이 없다면 로그인 페이지로 이동
         token ? updateList() : navigate("/signin")
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // 리스트 업데이트
