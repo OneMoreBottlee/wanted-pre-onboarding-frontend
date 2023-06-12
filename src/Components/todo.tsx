@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function ToDo({ props, deleteHandler }: Props) {
-    const { id, todo, isCompleted, userId } = props
+    const { id, todo, isCompleted } = props
     const [isChcecked, setIsChecked] = useState(isCompleted)
     const [nowDo, setNowDo] = useState(todo)
     const [isEdit, setIsEdit] = useState(false)

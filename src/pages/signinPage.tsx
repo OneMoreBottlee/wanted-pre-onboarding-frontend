@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signin } from "../apis";
 
-export default function SignInPage () {
+export default function SignInPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [validate, setValidate] = useState(false);
@@ -15,7 +15,7 @@ export default function SignInPage () {
 
         // 정상 로그인(토큰 값이 포함된 경우)인 경우
         // 로컬 스토리지에 토큰을 저장하고, todo로 이동한다.
-        if(token !== undefined){
+        if (token !== undefined) {
             localStorage.setItem("access_token", token)
             navigate('/todo')
         }
@@ -31,7 +31,7 @@ export default function SignInPage () {
     useEffect(() => {
         const token = localStorage.getItem("access_token")
         if (token) navigate("/todo")
-    }, [])
+    }, [navigate])
 
     return (
         <form onSubmit={signinHandler}>signin

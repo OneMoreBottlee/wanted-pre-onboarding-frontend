@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../apis";
 
-export default function SignUpPage () {
+export default function SignUpPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [validate, setValidate] = useState(false);
@@ -12,9 +12,9 @@ export default function SignUpPage () {
     const signupHandler = async (event: any) => {
         event.preventDefault()
         const response = await signup(email, password)
-        
+
         // 회원가입 성공한 경우, 로그인 페이지로 이동
-        if(response?.status === 201){
+        if (response?.status === 201) {
             navigate('/signin')
         }
     }
@@ -29,7 +29,7 @@ export default function SignUpPage () {
     useEffect(() => {
         const token = localStorage.getItem("access_token")
         if (token) navigate("/todo")
-    }, [])
+    }, [navigate])
 
     return (
         <form onSubmit={signupHandler}>signup
