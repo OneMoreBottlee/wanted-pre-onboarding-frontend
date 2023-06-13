@@ -89,8 +89,8 @@ export const updateTodo = async (token: string, id: number, todo: string, isComp
 
 // 2-4. deleteTodo - Todo 삭제
 export const deleteTodo = async (token: string, id: number) => {
-    const confirm = window.confirm(`정말 삭제하시겠습니까? 복원은 안돼요 !`)
-    if(confirm){
+    // const confirm = window.confirm(`정말 삭제하시겠습니까? 복원은 안돼요 !`)
+    // if(confirm){
         await axios.delete(`/todos/${id}`, {headers: {Authorization: `Bearer ${token}`}})
-    }
+    // }
 }

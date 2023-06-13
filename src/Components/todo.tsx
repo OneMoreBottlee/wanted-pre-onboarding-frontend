@@ -1,11 +1,7 @@
 import { useState } from "react";
 import { updateTodo } from "../apis";
-import { TodoListData } from "../types/todo";
 
-interface Props {
-    props: TodoListData;
-    deleteHandler: (id: number) => () => void;
-}
+import { Props } from "../types/todo";
 
 export default function ToDo({ props, deleteHandler }: Props) {
     const { id, todo, isCompleted } = props

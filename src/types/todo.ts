@@ -4,3 +4,8 @@ export interface TodoListData {
     isCompleted: boolean;
     userId: number;
 }
+
+export interface Props {
+    props: TodoListData;
+    deleteHandler: (id: number) => () => void;
+}
