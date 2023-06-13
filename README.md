@@ -1,9 +1,9 @@
 # wanted-pre-onboarding-frontend
 
-## 지원자
+## 👨‍💻 지원자
 - 한병주
 
-## 프로젝트 실행 방법 (Local)
+## 💻 프로젝트 실행 방법 (Local)
 1. git clone 으로 프로젝트 복사
 ```
 git clone git@github.com:OneMoreBottlee/wanted-pre-onboarding-frontend.git
@@ -17,10 +17,10 @@ npm install
 npm start
 ```
 
-## 배포 링크
+## 🖥 배포 링크
 https://ombstodo.netlify.app/
 
-## 과제
+## 📝 과제
 ### 1. 로그인 / 회원가입
 - [x] /signup 경로에 회원가입 기능 개발
 - [x] /signin 경로에 로그인 기능 개발
