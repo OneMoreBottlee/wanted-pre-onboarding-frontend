@@ -21,6 +21,9 @@ npm start
 https://ombstodo.netlify.app/
 
 ## 📝 과제
+<details>
+    <summary>접기 / 펼치기</summary>
+    
 ### 1. 로그인 / 회원가입
 - [x] /signup 경로에 회원가입 기능 개발
 - [x] /signin 경로에 로그인 기능 개발
@@ -126,3 +129,59 @@ Assignment 10
 <button data-testid="submit-button">제출</button>
 <button data-testid="cancel-button">취소</button>
 ```
+
+</details>
+
+## ✍ Issue
+<details>
+<summary>1. Styled-Components</summary>
+    
+### 에러 상황
+로직을 완성하고, 디자인 작업을 위해 평소 사용하던 스타일드 컴포넌트를 설치하는 과정에서 에러가 발생했다.
+    
+```
+npm ERR! Cannot read properties of null (reading 'edgesOut')
+```
+    
+### 에러 해결
+styled-components 깃허브의 issue에서 원인을 파악했다.  
+최근 (230508) 릴리스된 새로운 버전에서 발생하는 문제일 수 있다는 내용이었다.  
+최신 버전 대신 안정적인 버전을 설치해 에러를 해결했다.
+    
+</details>
+
+<details>
+<summary>2. svg import in TS</summary>
+    
+### 에러 상황
+메인 화면에 원티드 로고를 삽입하기 위해 범용성이 높은 svg 파일을 사용했다.  
+애니메이션으로 로고 디자인 해보려는 이유와 사용해보지 않은 파일 형식에 시도하는 마음에서였다.  
+(시간 여유가 생기면 애니메이션 추가 예정)  
+    
+평소 사용하던 png 와 같이 파일을 추가하고, 경로를 import 했는데 이게 왠걸 ?
+    
+```
+type 'typeof import("*.svg")' is not assignable to type 'string'.ts(2322)
+```
+    
+에러가 발생했다.
+    
+### 에러 해결
+Type Script에서 svg 파일에 대한 타입을 찾을 수 없다는 이유였다.
+별도의 d.ts 파일을 생성해 svg 파일에 대한 타입을 지정하고, tsconfig.json 파일에서 webpack 설정을 추가해 에러를 해결했다.
+    
+custom.d.ts
+```
+declare module "*.svg" {
+    const content: any;
+    export default content;
+}
+```
+    
+tsconfig.json
+```
+...
+"include": ["src", "src/custom.d.ts"]
+```
+    
+</details>
