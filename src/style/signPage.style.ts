@@ -96,10 +96,11 @@ export const Sign = styled.section`
             color: #fff;
             text-transform: uppercase;
 
-            > a {
+            > span {
                 color: #2761F2;
                 font-weight: 500;
                 text-decoration: none;
+                cursor: pointer;
             }
         }
 

@@ -60,7 +60,7 @@ export default function SignInPage() {
                         ? <button data-testid="signup-button">Sign In</button>
                         : <button disabled data-testid="signin-button">Sign In</button>}
                 </div>
-                <p>Make New Account ? <a href="/signup">Sign Up</a></p>
+                <p>Make New Account ? <span onClick={() => navigate('/signup')}>Sign Up</span></p>
             </form>
         </Sign>
     )
