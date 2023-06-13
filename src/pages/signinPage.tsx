@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { signin } from "../apis";
+
+import { Sign } from "../style/signPage.style";
 
 export default function SignInPage() {
     const [email, setEmail] = useState("");
@@ -33,13 +36,32 @@ export default function SignInPage() {
         if (token) navigate("/todo")
     }, [navigate])
 
+    // css 용 코드
+    useEffect(() => {
+        document.querySelectorAll('label').forEach(label => {
+            label.innerHTML = label.innerText.split("").map((letter, i) => `<span style="transition-delay: ${i * 50}ms">${letter}</span>`).join('')
+        })
+    }, [])
+
     return (
-        <form onSubmit={signinHandler}>signin
-            <input data-testid="email-input" onChange={(e) => setEmail(e.target.value)} />
-            <input data-testid="password-input" onChange={(e) => setPassword(e.target.value)} />
-            {validate
-                ? <button style={{ height: "20px" }} data-testid="signup-button">Sign</button>
-                : <button disabled style={{ height: "20px" }} data-testid="signin-button">Sign</button>}
-        </form>
+        <Sign>
+            <form onSubmit={signinHandler}>
+                <h2>Sign IN</h2>
+                <div className="inputBox">
+                    <input type={"text"} required data-testid="email-input" onChange={(e) => setEmail(e.target.value)} />
+                    <label>Email</label>
+                </div>
+                <div className="inputBox">
+                    <input type={"password"} required data-testid="password-input" onChange={(e) => setPassword(e.target.value)} />
+                    <label>Password</label>
+                </div>
+                <div className="inputBox">
+                    {validate
+                        ? <button data-testid="signup-button">Sign In</button>
+                        : <button disabled data-testid="signin-button">Sign In</button>}
+                </div>
+                <p>Make New Account ? <a href="/signup">Sign Up</a></p>
+            </form>
+        </Sign>
     )
 }

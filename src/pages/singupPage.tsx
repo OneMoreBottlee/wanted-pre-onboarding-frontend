@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { signup } from "../apis";
+
+import { Sign } from "../style/signPage.style";
 
 export default function SignUpPage() {
     const [email, setEmail] = useState("");
@@ -31,13 +34,32 @@ export default function SignUpPage() {
         if (token) navigate("/todo")
     }, [navigate])
 
+    // css 용 코드
+    useEffect(() => {
+        document.querySelectorAll('label').forEach(label => {
+            label.innerHTML = label.innerText.split("").map((letter, i) => `<span style="transition-delay: ${i * 50}ms">${letter}</span>`).join('')
+        })
+    }, [])
+
     return (
-        <form onSubmit={signupHandler}>signup
-            <input data-testid="email-input" onChange={(e) => setEmail(e.target.value)} />
-            <input data-testid="password-input" onChange={(e) => setPassword(e.target.value)} />
-            {validate
-                ? <button style={{ height: "20px" }} data-testid="signup-button">Sign</button>
-                : <button disabled style={{ height: "20px" }} data-testid="signup-button">Sign</button>}
-        </form>
+        <Sign>
+            <form onSubmit={signupHandler}>
+                <h2>Create Account</h2>
+                <div className="inputBox">
+                    <input type={"text"} required data-testid="email-input" onChange={(e) => setEmail(e.target.value)} />
+                    <label>Email</label>
+                </div>
+                <div className="inputBox">
+                    <input type={"password"} required data-testid="password-input" onChange={(e) => setPassword(e.target.value)} />
+                    <label>Password</label>
+                </div>
+                <div className="inputBox">
+                    {validate
+                        ? <button data-testid="signup-button">Sign</button>
+                        : <button disabled data-testid="signup-button">Sign</button>}
+                </div>
+                <p>Already have an account? <a href="/signin">Sign In</a></p>
+            </form>
+        </Sign>
     )
 }
