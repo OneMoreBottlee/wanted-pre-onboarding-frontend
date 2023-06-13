@@ -58,7 +58,7 @@ export default function SignInPage() {
                 <div className="inputBox">
                     {validate
                         ? <button data-testid="signup-button">Sign In</button>
-                        : <button disabled data-testid="signin-button">Sign In</button>}
+                        : <button disabled data-testid="signin-button" style={{cursor: "default"}}>내용을 적으세요</button>}
                 </div>
                 <p>Make New Account ? <span onClick={() => navigate('/signup')}>Sign Up</span></p>
             </form>
