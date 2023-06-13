@@ -98,6 +98,7 @@ export default function TodoPage() {
     const createHandler = async () => {
         const newToDo = await createTodo(token!, newTodo)
         setTodoList((old) => [...old, newToDo])
+        setNewTodo("")
     }
 
     // 투두 삭제
@@ -114,7 +115,7 @@ export default function TodoPage() {
             <button onClick={() => navigate("/")}>🏠</button>
             <div className="createTodo">
                 <h2>Make To Do</h2>
-                <input data-testid="new-todo-input" onChange={(e) => setNewTodo(e.target.value)} />
+                <input data-testid="new-todo-input" value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
                 <button data-testid="new-todo-add-button" onClick={createHandler}>추가</button>
             </div>
             <div className="todoList">
