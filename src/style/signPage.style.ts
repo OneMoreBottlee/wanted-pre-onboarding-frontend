@@ -7,6 +7,23 @@ export const Sign = styled.section`
     min-height: 100vh;
     background: #1c2630;
 
+    > button {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        right: 5%;
+        bottom: 5%;
+        border-radius: 20px;
+        background: white;
+        font-size: 2em;
+        cursor: pointer;
+        
+        &:hover {
+            background: #2761F2;
+            transition: 0.15s;
+        }
+    }
+
     > form {
         background: #29313c;
         padding: 60px 80px 60px;

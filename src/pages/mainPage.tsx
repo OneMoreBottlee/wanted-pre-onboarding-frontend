@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import Logo from "../image/wantedLogo.svg";
+
 import { MainSection } from "../style/mainPage.style";
+import Logo from "../image/wantedLogo.svg";
 
 export default function MainPage() {
     const navigate = useNavigate()

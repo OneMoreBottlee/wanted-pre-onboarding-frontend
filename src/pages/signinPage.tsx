@@ -45,6 +45,7 @@ export default function SignInPage() {
 
     return (
         <Sign>
+            <button onClick={() => navigate("/")}>🏠</button>
             <form onSubmit={signinHandler}>
                 <h2>Sign IN</h2>
                 <div className="inputBox">
