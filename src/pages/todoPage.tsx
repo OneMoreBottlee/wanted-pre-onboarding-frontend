@@ -96,6 +96,7 @@ export default function TodoPage() {
 
     // 투두 생성
     const createHandler = async () => {
+        if(newTodo.length === 0)return
         const newToDo = await createTodo(token!, newTodo)
         setTodoList((old) => [...old, newToDo])
         setNewTodo("")
