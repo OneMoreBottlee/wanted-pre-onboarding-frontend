@@ -136,14 +136,14 @@ Assignment 10
 <details>
 <summary>1. Styled-Components</summary>
     
-### 에러 상황
+### 상황
 로직을 완성하고, 디자인 작업을 위해 평소 사용하던 스타일드 컴포넌트를 설치하는 과정에서 에러가 발생했다.
     
 ```
 npm ERR! Cannot read properties of null (reading 'edgesOut')
 ```
     
-### 에러 해결
+### 해결
 styled-components 깃허브의 issue에서 원인을 파악했다.  
 최근 (230508) 릴리스된 새로운 버전에서 발생하는 문제일 수 있다는 내용이었다.  
 최신 버전 대신 안정적인 버전을 설치해 에러를 해결했다.
@@ -153,7 +153,7 @@ styled-components 깃허브의 issue에서 원인을 파악했다.
 <details>
 <summary>2. svg import in TS</summary>
     
-### 에러 상황
+### 상황
 메인 화면에 원티드 로고를 삽입하기 위해 범용성이 높은 svg 파일을 사용했다.  
 애니메이션으로 로고 디자인 해보려는 이유와 사용해보지 않은 파일 형식에 시도하는 마음에서였다.  
 (시간 여유가 생기면 애니메이션 추가 예정)  
@@ -166,7 +166,7 @@ type 'typeof import("*.svg")' is not assignable to type 'string'.ts(2322)
     
 에러가 발생했다.
     
-### 에러 해결
+### 해결
 Type Script에서 svg 파일에 대한 타입을 찾을 수 없다는 이유였다.
 별도의 d.ts 파일을 생성해 svg 파일에 대한 타입을 지정하고, tsconfig.json 파일에서 webpack 설정을 추가해 에러를 해결했다.
     
@@ -184,4 +184,23 @@ tsconfig.json
 "include": ["src", "src/custom.d.ts"]
 ```
     
+</details>
+
+<details>
+<summary>3. 배포 후 새로고침시 404 오류 발생</summary>
+
+### 상황
+netlify로 배포 후 /signin 이나 /signup, /todo 페이지 새로고침을 하면 404 오류가 발생했다.  
+
+spa 방식의 리액트는 index.html 파일 하나로 렌더링한다.  
+브라우저는 서버로부터 index.html 로 렌더링한 페이지 위에 여러 컴포넌트를 렌더링하게 된다.
+따라서 브라우저를 통해 /signin 이나 /todo 와 같은 url 요청이 서버에 전송되면 서버는 나한테 없는데 어쩌라고를 외치며 404 오류를 리턴한다.  
+그러므로 서버에 url 요청이 오면 a를 보내줘 ! 와 같은 규칙을 정해 알려줘야 한다.  
+
+### 해결
+내가 배포한 netlify 에서는 _redirects 파일을 배포 디렉토리에 추가하면 리다이렉트 설정이 된다고 공식문서에 해결 방법을 제시한다.
+https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file
+
+public 폴더에 _redirects 파일을 만들고 redirect를 원하는 url을 추가하면, 해당 url에 접속할때 발생하는 404 오류가 사라진다.
+
 </details>
